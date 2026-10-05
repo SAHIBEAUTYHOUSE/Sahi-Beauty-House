@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Customizable cosmetics shop website">
+<title>SAHI BEAUTY HOUSE</title>
+<style>
+:root{--primary:#e91e63;--secondary:#24131d;--bg:#fff;--soft:#fff3f7;--text:#24131d;--muted:#756a70}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}.top{background:var(--secondary);color:#fff;text-align:center;padding:8px;font-size:13px}
+nav{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 2px 18px #0001;padding:13px 5%;display:flex;justify-content:space-between;align-items:center}.brand{display:flex;gap:10px;align-items:center}.brand img{width:45px;height:45px;object-fit:contain;border-radius:12px;display:none}.brandName{font-weight:900;color:var(--primary);font-size:20px}.links{display:flex;gap:20px;font-weight:700;font-size:14px}.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer}.primary{background:var(--primary);color:#fff}.dark{background:var(--secondary);color:#fff}.outline{background:#fff;border:1px solid #ddd}.hero{padding:65px 6%;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;background:linear-gradient(135deg,var(--soft),#fff)}
+.badge{display:inline-block;background:#fff;border:1px solid #ffd0df;border-radius:30px;padding:8px 14px;color:var(--primary);font-weight:800}.hero h1{font-size:clamp(40px,6vw,72px);line-height:1;margin:15px 0}.hero h1 span{color:var(--primary)}.hero p{color:var(--muted);font-size:18px;line-height:1.6;max-width:650px}.heroCard{background:#fff;border-radius:28px;padding:30px;text-align:center;box-shadow:0 20px 60px #c2185b18}.heroCard .emoji{font-size:100px}.heroBtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+section{padding:55px 6%}.head{text-align:center;margin-bottom:28px}.head h2{font-size:34px;margin:4px}.head p{color:var(--muted)}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}.search{flex:1;min-width:220px;padding:13px;border:1px solid #ddd;border-radius:12px}.cat{padding:11px 14px;border:1px solid #ddd;background:#fff;border-radius:12px;cursor:pointer;font-weight:700}.cat.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.product{border:1px solid #eee;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 5px 20px #00000009}.pic{height:175px;background:linear-gradient(135deg,var(--soft),#ffe4ef);display:flex;justify-content:center;align-items:center;font-size:70px}.pic img{width:100%;height:100%;object-fit:cover}.body{padding:15px}.body h3{margin:0 0 6px}.meta{font-size:13px;color:var(--muted)}.price{font-size:20px;font-weight:900;color:var(--primary);margin:10px 0}.product .btn{width:100%}
+.features{background:var(--soft);display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.feature{text-align:center;background:#fff;padding:22px;border-radius:18px}.feature b{display:block;margin:8px}.feature span{font-size:13px;color:var(--muted)}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:30px}.box{background:var(--secondary);color:#fff;padding:30px;border-radius:25px}.box p{color:#eee;line-height:1.6}.muted{color:var(--muted);line-height:1.7}
+.contact{background:var(--soft)}.contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.contactCard{background:#fff;padding:25px;border-radius:18px}.contactCard a{color:var(--primary);font-weight:800}
+footer{background:var(--secondary);color:#fff;text-align:center;padding:35px 6%}footer p{color:#d8cbd0}
+.cartBar{position:fixed;right:18px;bottom:18px;z-index:30;background:var(--secondary);color:#fff;padding:11px 15px;border-radius:50px;display:none;align-items:center;gap:9px;box-shadow:0 10px 30px #0005}.cartBar.show{display:flex}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:50;padding:18px;overflow:auto}.modal.open{display:flex;justify-content:center;align-items:center}.modalBox{background:#fff;width:min(850px,100%);max-height:92vh;overflow:auto;border-radius:20px;padding:24px}.close{float:right;border:0;border-radius:50%;width:35px;height:35px;cursor:pointer}.cartItem{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:12px 0}.qty button{border:1px solid #ddd;background:#fff;border-radius:6px;width:28px;height:28px}
+.adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin:10px 0}.field label{display:block;font-weight:800;margin-bottom:6px;font-size:13px}.field input,.field textarea,.field select{width:100%;padding:11px;border:1px solid #ddd;border-radius:9px}.field textarea{min-height:80px}.adminActions{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.adminProduct{border:1px solid #eee;padding:12px;border-radius:12px;margin:9px 0}.adminProductTop{display:flex;justify-content:space-between;gap:8px}.danger{background:#fee;color:#b00020;border:1px solid #f5c2c7}.notice{background:#fff8df;border:1px solid #f0d67a;padding:10px;border-radius:10px;font-size:13px}
+@media(max-width:850px){.hero,.about,.contactGrid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.links{display:none}.adminGrid{grid-template-columns:1fr}}
+@media(max-width:480px){section{padding:40px 4%}.grid{gap:10px}.pic{height:135px}.hero{padding:45px 5%}}
+</style>
+</head>
+<body>
+<div class="top" id="topText"></div>
+<nav><a class="brand" href="#home"><img id="logoImg"><span class="brandName" id="navName"></span></a><div class="links"><a href="#shop">Shop</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#cart" onclick="openCart()">🛒 <span id="navCount">0</span></a></div><button class="btn outline" onclick="openAdmin()">⚙️ Admin</button></nav>
+
+<header class="hero" id="home"><div><span class="badge" id="locationBadge"></span><h1 id="heroTitle"></h1><p id="heroDesc"></p><div class="heroBtns"><a class="btn primary" href="#shop">🛍️ Shop Now</a><a class="btn dark" id="heroWa" target="_blank">💬 WhatsApp</a></div></div><div class="heroCard"><div class="emoji" id="heroEmoji">💄</div><img id="heroLogo" style="max-width:100%;max-height:150px;display:none;border-radius:20px"><h2 id="heroName"></h2><p id="tagline"></p></div></header>
+
+<section id="shop"><div class="head"><h2>Our Collection</h2><p id="shopIntro"></p></div><div class="controls"><input id="search" class="search" placeholder="🔎 Search products..." oninput="render()"><div id="cats"></div></div><div class="grid" id="products"></div></section>
+
+<section class="features"><div class="feature">🛍️<b>Wide Choice</b><span>Beauty products for everyday needs.</span></div><div class="feature">💬<b>WhatsApp Orders</b><span>Easy direct ordering.</span></div><div class="feature">💳<b>UPI Payment</b><span>Payment details shown after confirmation.</span></div><div class="feature">📍<b>Local Shop</b><span id="featureLocation"></span></div></section>
+
+<section id="about" class="about"><div><h2 id="aboutTitle"></h2><p class="muted" id="aboutText"></p><a class="btn primary" id="callBtn"></a></div><div class="box"><h2 id="boxTitle"></h2><p id="boxText"></p></div></section>
+
+<section id="contact" class="contact"><div class="head"><h2>Contact Us</h2><p>We're ready to help.</p></div><div class="contactGrid"><div class="contactCard"><h3>📱 Phone / WhatsApp</h3><p id="contactPhone"></p><a class="btn primary" id="contactWa" target="_blank">💬 WhatsApp Order</a></div><div class="contactCard"><h3>📍 Shop Address</h3><p id="contactAddress"></p></div></div></section>
+
+<footer><h2 id="footerName"></h2><p id="footerTag"></p><p id="footerContact"></p><small id="copyright"></small></footer>
+
+<div class="cartBar" id="cartBar">🛒 <span id="cartCount">0</span> • ₹<span id="cartTotal">0</span><button class="btn primary" onclick="openCart()">View Cart</button></div>
+<div class="modal" id="cartModal"><div class="modalBox"><button class="close" onclick="closeModal('cartModal')">×</button><h2>🛒 Your Cart</h2><div id="cartItems"></div><h3>Total: ₹<span id="total">0</span></h3><button class="btn primary" style="width:100%" onclick="checkout()">💬 Order on WhatsApp</button><p class="muted" style="font-size:12px">After confirming availability, use the UPI/payment details provided by the shop. Never share your UPI PIN or OTP.</p></div></div>
+
+<div class="modal" id="adminModal"><div class="modalBox"><button class="close" onclick="closeModal('adminModal')">×</button><h2>⚙️ Shop Customizer</h2><div class="notice">Changes are saved in this browser. Use <b>Export Backup</b> to keep a copy. This version does not publish changes to other devices automatically.</div>
+<h3>Shop & Branding</h3><div class="adminGrid">
+<div class="field"><label>Shop Name</label><input id="aName"></div><div class="field"><label>Tagline</label><input id="aTag"></div>
+<div class="field"><label>Phone / WhatsApp</label><input id="aPhone"></div><div class="field"><label>Address</label><input id="aAddress"></div>
+<div class="field"><label>Primary Color</label><input id="aColor" type="color"></div><div class="field"><label>Secondary Color</label><input id="aSecondary" type="color"></div>
+<div class="field"><label>Logo URL (optional)</label><input id="aLogo" placeholder="https://..."></div><div class="field"><label>Hero Emoji</label><input id="aEmoji"></div>
+</div>
+<div class="field"><label>Hero Description</label><textarea id="aDesc"></textarea></div><div class="field"><label>About Text</label><textarea id="aAbout"></textarea></div><div class="field"><label>Offer / Top Bar Text</label><input id="aTop"></div>
+<div class="adminActions"><button class="btn primary" onclick="saveSettings()">💾 Save Changes</button><button class="btn outline" onclick="exportData()">⬇️ Export Backup</button><label class="btn outline">⬆️ Import Backup<input type="file" id="importFile" accept=".json" hidden onchange="importData(event)"></label><button class="btn danger" onclick="resetAll()">Reset Demo Data</button></div>
+
+<h3>Products</h3><div class="adminGrid"><div class="field"><label>Product Name</label><input id="pName"></div><div class="field"><label>Category</label><input id="pCat" placeholder="Makeup"></div><div class="field"><label>Price (₹)</label><input id="pPrice" type="number" min="0"></div><div class="field"><label>Emoji</label><input id="pEmoji" placeholder="💄"></div><div class="field"><label>Photo URL (optional)</label><input id="pImage" placeholder="https://..."></div></div><button class="btn primary" onclick="addProduct()">＋ Add Product</button><div id="adminProducts"></div>
+<h3>Payment</h3><div class="field"><label>UPI ID</label><input id="aUpi" placeholder="yourname@upi"></div><p class="muted" style="font-size:12px">The UPI ID is stored locally and can be used to generate a payment link. Do not enter PIN/OTP.</p>
+</div></div>
+
+<script>
+const KEY="sahiBeautyCustomV2";
+const defaults={
+ name:"SAHI BEAUTY HOUSE",tag:"Your Beauty, Our Passion",phone:"8670994125",address:"Sherpur, Murshidabad, West Bengal, India",
+ color:"#e91e63",secondary:"#24131d",logo:"",emoji:"💄",
+ desc:"Discover cosmetics and beauty essentials at SAHI BEAUTY HOUSE. Choose your products, add them to your cart and send your order directly to us on WhatsApp.",
+ about:"We are a local cosmetics shop serving customers in Sherpur, Murshidabad, West Bengal. Our goal is to make it easy to discover beauty products and contact us for availability, prices and orders.",
+ top:"✨ Welcome to SAHI BEAUTY HOUSE • Cosmetics • WhatsApp Orders • Online Payment",upi:"",
+ products:[
+ {id:1,n:"Matte Lipstick",c:"Makeup",p:199,e:"💄",img:""},{id:2,n:"Kajal",c:"Makeup",p:99,e:"🖤",img:""},
+ {id:3,n:"Face Foundation",c:"Makeup",p:349,e:"✨",img:""},{id:4,n:"Face Wash",c:"Skincare",p:179,e:"🧴",img:""},
+ {id:5,n:"Moisturizer",c:"Skincare",p:249,e:"🌸",img:""},{id:6,n:"Sunscreen",c:"Skincare",p:299,e:"☀️",img:""},
+ {id:7,n:"Shampoo",c:"Hair Care",p:229,e:"🫧",img:""},{id:8,n:"Hair Serum",c:"Hair Care",p:279,e:"💇",img:""},
+ {id:9,n:"Body Spray",c:"Fragrance",p:249,e:"🌺",img:""},{id:10,n:"Perfume",c:"Fragrance",p:499,e:"🌹",img:""},
+ {id:11,n:"Lip Balm",c:"Makeup",p:129,e:"💋",img:""},{id:12,n:"Makeup Brush Set",c:"Makeup",p:399,e:"🎀",img:""}]};
+let data=JSON.parse(localStorage.getItem(KEY)||"null")||structuredClone(defaults);
+let cart=JSON.parse(localStorage.getItem(KEY+"Cart")||"[]"),category="All";
+const $=id=>document.getElementById(id);
+function save(){localStorage.setItem(KEY,JSON.stringify(data));apply();render();renderAdmin()}
+function apply(){
+document.documentElement.style.setProperty("--primary",data.color);document.documentElement.style.setProperty("--secondary",data.secondary);
+$("topText").textContent=data.top;$("navName").textContent=data.name;$("heroName").textContent=data.name;$("footerName").textContent=data.name;$("tagline").textContent=data.tag;
+$("heroTitle").innerHTML=`Beauty that makes you <span>shine.</span>`;$("heroDesc").textContent=data.desc;$("locationBadge").textContent="💖 "+data.address;$("featureLocation").textContent=data.address;
+$("aboutTitle").textContent="About "+data.name;$("aboutText").textContent=data.about;$("boxTitle").textContent="💗 "+data.tag;$("boxText").textContent="Need a product? Send us its name on WhatsApp. We will confirm availability and the current price before you pay.";
+$("contactPhone").innerHTML=`<a href="tel:+91${data.phone.replace(/\D/g,"")}">${data.phone}</a>`;$("contactAddress").textContent=data.address;$("callBtn").href="tel:+91"+data.phone.replace(/\D/g,"");$("callBtn").textContent="📞 Call "+data.phone;
+let wa="https://wa.me/"+(data.phone.replace(/\D/g,"").startsWith("91")?data.phone.replace(/\D/g,""):"91"+data.phone.replace(/\D/g,""));
+$("heroWa").href=wa+"?text="+encodeURIComponent("Hello "+data.name+", I want to know about your products.");
+$("contactWa").href=wa+"?text="+encodeURIComponent("Hello "+data.name+", I want to place an order.");
+$("footerTag").textContent=data.tag;$("footerContact").textContent="📞 "+data.phone+" • 📍 "+data.address;$("copyright").textContent="© "+new Date().getFullYear()+" "+data.name+". All Rights Reserved.";
+$("heroEmoji").textContent=data.emoji||"💄";$("heroLogo").style.display=data.logo?"block":"none";$("heroLogo").src=data.logo;
+$("logoImg").style.display=data.logo?"block":"none";$("logoImg").src=data.logo;
+}
+function render(){
+let q=$("search").value.toLowerCase(),list=data.products.filter(x=>(category==="All"||x.c===category)&&x.n.toLowerCase().includes(q));
+let cats=["All",...new Set(data.products.map(x=>x.c))];$("cats").innerHTML=cats.map(c=>`<button class="cat ${c===category?"active":""}" onclick="setCat('${esc(c)}')">${esc(c)}</button>`).join("");
+$("products").innerHTML=list.length?list.map(x=>`<article class="product"><div class="pic">${x.img?`<img src="${escAttr(x.img)}" alt="">`:esc(x.e||"💄")}</div><div class="body"><h3>${esc(x.n)}</h3><div class="meta">${esc(x.c)}</div><div class="price">₹${Number(x.p).toLocaleString("en-IN")}</div><button class="btn primary" onclick="add(${x.id})">Add to Cart</button></div></article>`).join(""):"<p>No products found.</p>";
+updateCart()
+}
+function setCat(c){category=c;render()}
+function esc(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function escAttr(s){return esc(s)}
+function add(id){let x=cart.find(i=>i.id===id);x?x.q++:cart.push({id,q:1});saveCart();openCart()}
+function saveCart(){localStorage.setItem(KEY+"Cart",JSON.stringify(cart));updateCart()}
+function updateCart(){let count=cart.reduce((a,i)=>a+i.q,0),total=cart.reduce((a,i)=>a+i.q*(data.products.find(p=>p.id===i.id)?.p||0),0);$("navCount").textContent=count;$("cartCount").textContent=count;$("cartTotal").textContent=total;$("cartBar").classList.toggle("show",count>0);$("total").textContent=total;$("cartItems").innerHTML=cart.length?cart.map(i=>{let p=data.products.find(x=>x.id===i.id);if(!p)return"";return `<div class="cartItem"><div><b>${esc(p.n)}</b><br><small>₹${p.p} × ${i.q}</small></div><div class="qty"><button onclick="change(${i.id},-1)">−</button> ${i.q} <button onclick="change(${i.id},1)">+</button></div></div>`}).join(""):"<p>Your cart is empty.</p>"}
+function change(id,d){let x=cart.find(i=>i.id===id);if(!x)return;x.q+=d;if(x.q<=0)cart=cart.filter(i=>i.id!==id);saveCart()}
+function openCart(){updateCart();$("cartModal").classList.add("open")}function closeModal(id){$(id).classList.remove("open")}
+function checkout(){if(!cart.length)return;let lines=cart.map(i=>{let p=data.products.find(x=>x.id===i.id);return `• ${p.n} × ${i.q} = ₹${p.p*i.q}`}).join("\n"),total=cart.reduce((a,i)=>a+i.q*(data.products.find(p=>p.id===i.id)?.p||0),0),msg=`Hello ${data.name},\n\nI want to place this order:\n${lines}\n\nTotal: ₹${total}\n\nPlease confirm availability and payment details.`;let n=data.phone.replace(/\D/g,"");if(!n.startsWith("91"))n="91"+n;window.open("https://wa.me/"+n+"?text="+encodeURIComponent(msg),"_blank")}
+function openAdmin(){loadAdmin();$("adminModal").classList.add("open")}
+function loadAdmin(){$("aName").value=data.name;$("aTag").value=data.tag;$("aPhone").value=data.phone;$("aAddress").value=data.address;$("aColor").value=data.color;$("aSecondary").value=data.secondary;$("aLogo").value=data.logo;$("aEmoji").value=data.emoji;$("aDesc").value=data.desc;$("aAbout").value=data.about;$("aTop").value=data.top;$("aUpi").value=data.upi;renderAdmin()}
+function saveSettings(){Object.assign(data,{name:$("aName").value||"My Shop",tag:$("aTag").value,phone:$("aPhone").value,address:$("aAddress").value,color:$("aColor").value,secondary:$("aSecondary").value,logo:$("aLogo").value,emoji:$("aEmoji").value,desc:$("aDesc").value,about:$("aAbout").value,top:$("aTop").value,upi:$("aUpi").value});save();alert("Saved successfully!")}
+function renderAdmin(){$("adminProducts").innerHTML=data.products.map(p=>`<div class="adminProduct"><div class="adminProductTop"><b>${esc(p.n)}</b><button class="btn danger" onclick="removeProduct(${p.id})">Delete</button></div><small>${esc(p.c)} • ₹${p.p}</small><br><button class="btn outline" style="margin-top:7px" onclick="editProduct(${p.id})">Edit</button></div>`).join("")}
+function addProduct(){let n=$("pName").value.trim();if(!n)return alert("Enter product name.");data.products.push({id:Date.now(),n,c:$("pCat").value.trim()||"Other",p:Number($("pPrice").value)||0,e:$("pEmoji").value||"🛍️",img:$("pImage").value.trim()});["pName","pCat","pPrice","pEmoji","pImage"].forEach(id=>$(id).value="");save()}
+function editProduct(id){let p=data.products.find(x=>x.id===id);if(!p)return;let n=prompt("Product name:",p.n);if(n===null)return;let pr=prompt("Price (₹):",p.p);if(pr===null)return;p.n=n;p.p=Number(pr)||0;save()}
+function removeProduct(id){if(confirm("Delete this product?")){data.products=data.products.filter(p=>p.id!==id);cart=cart.filter(i=>i.id!==id);save();saveCart()}}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="sahi-beauty-house-backup.json";a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.name||!Array.isArray(x.products))throw Error();data=x;save();alert("Backup imported successfully.")}catch(_){alert("Invalid backup file.")}};r.readAsText(f)}
+function resetAll(){if(confirm("Reset all customization and products to demo data?")){data=structuredClone(defaults);cart=[];save();saveCart();loadAdmin()}}
+apply();render();updateCart();
+</script>
+</body></html>
